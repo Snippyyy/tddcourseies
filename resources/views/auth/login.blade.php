@@ -11,7 +11,9 @@
                 {{ session('status') }}
             </div>
         @endif
-
+        @env('local')
+            <x-login-link email="test@mail.es" class="hover:text-blue-500 transition-colors" label="Inicio de sesión para desarrolladores" redirect-url="{{route('pages.dashboard')}}"/>
+        @endenv
         <form method="POST" action="{{ route('login') }}">
             @csrf
 

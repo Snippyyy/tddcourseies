@@ -10,9 +10,12 @@ return new class extends Migration {
     {
         Schema::create('videos', function (Blueprint $table) {
             $table->id();
+            $table->string('vimeo_id');
             $table->foreignIdFor(Course::class);
             $table->string('slug');
             $table->string('title');
+            $table->text('description');
+            $table->integer('duration_in_min');
             $table->timestamps();
         });
     }

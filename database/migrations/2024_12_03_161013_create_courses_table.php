@@ -10,6 +10,8 @@ return new class extends Migration
     {
         Schema::create('courses', function (Blueprint $table) {
             $table->id();
+            $table->string('paddle_product_id');
+            $table->string('paddle_price_id')->nullable();
             $table->string('title');
             $table->string('slug');
             $table->string('tagline');

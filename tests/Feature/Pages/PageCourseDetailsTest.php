@@ -42,3 +42,26 @@ it('shows course video count', function () {
         ->assertOk()
         ->assertSeeText('3 videos');
 });
+
+it('includes paddle checkout button', function () {
+
+
+    config()->set('services.paddle.vendor-id', 'vendor-id');
+    $course = Course::factory()
+        ->released()
+        ->create(
+        [
+            'paddle_product_id' => 'pri_01jhqsmer4fc106jrdsxc5ej3e',
+        ]
+    );
+
+    get(route('pages.course-details', $course))
+        ->assertOk()
+        ->assertSee('<script src="https://cdn.paddle.com/paddle/v2/paddle.js"></script>', false)
+        ->assertSee('Paddle.Initialize({ token: "' . config('services.paddle.vendor-id') . '" });', false)
+        ->assertSee('<a href="#!" class="paddle_button" data-theme="light"', false);
+});
+
+it('', function () {
+
+});
